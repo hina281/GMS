@@ -56,7 +56,76 @@ describe('Agency test Cases',()=>{
         cy
         .wait(1000)
         cy
-        .get('.ant-select-item-option:nth-child(2)')
+        .contains('div','Ras al-Khaimah')
+        .as('city')
+        cy
+        .get('@city')
+        .click()
+        cy
+        .get('#agency_timezoneId')
+        .click()
+        cy
+        .wait(1000)
+        cy
+        .contains('div','(UTC-12:00) International Date Line West')
+        .as('timezone')
+        cy
+        .get('@timezone')
+        .click()
+        cy
+        .get('.ant-upload #agency_logo').selectFile('logo.jpeg',{force:true})
+        cy
+        .get('#agency_vatNumber')
+        .type(number)
+        cy
+        .get('#agency_vatAmount')
+        .type('5')
+        cy
+        .fixture('logindetails.json').then((user)=>{
+            cy.userSignUp(user.name,user.Password,user.Password)
+        })
+        cy
+        .get('#user_firstName')
+        .type(name)
+        cy
+        .get('#user_lastName')
+        .type(name)
+        cy
+        .get('#user_initials')
+        .type('Ms/Mr')
+        cy
+        .get('#user_email')
+        .type(email)
+        cy
+        .get('#user_phone')
+        .type(number)
+        cy.wrap
+        cy
+        .get('#user_address')
+        .type(address)
+        cy
+        .get('#user_residenceCountryId')
+        .click()
+        .type("United Arab Emirates{enter}")
+        cy
+        .wait(500)
+        cy
+        .get('#user_cityId')
+        .click()
+        .type('Ras al-Khaimah{enter}')
+        cy
+        .wait(500)
+        cy
+        .get('#user_originCountryId')
+        .click()
+        .type('United Arab Emirates{enter}')
+        cy
+        .get('#user_idNumber')
+        .type(number)
+        cy
+        .get('.ant-upload #user_profilePic').selectFile('logo.jpeg',{force:true})
+        cy
+        .contains('span','Save')
         .click()
     })
     

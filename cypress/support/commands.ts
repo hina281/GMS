@@ -1,4 +1,11 @@
 /// <reference types="cypress" />
+import { faker } from '@faker-js/faker'
+var name=faker.person.firstName()
+var email=faker.internet.email()
+var country=faker.location.country()
+var zcode=faker.location.zipCode('#####') 
+var number=faker.phone.number()
+var address= faker.location.streetAddress()
 // ***********************************************
 // This example commands.ts shows you how to
 // create various custom commands and overwrite
@@ -27,7 +34,43 @@
     .click()
 
   })
-
+Cypress.Commands.add('userSignUp',(username:string,password,password1)=>{
+  cy
+  .get('#user_username').type(name)
+  cy
+  .get('#user_password').type(password)
+  cy
+  .get('#user_confirmPassword').type(password1)
+})
+Cypress.Commands.add('userContactDetails', ()=>{
+  cy
+  .get('#user_firstName').type(name)
+  cy
+  .get('#user_lastName').type(name)
+  cy
+  .get('#user_initials').type('Ms/Mr')
+  cy
+  .get('#user_email').type(email)
+  cy
+  .get('#user_phone').type(number)
+  cy.wrap
+  cy
+  .get('#user_address').type(address)
+  cy
+  .get('#user_residenceCountryId').click().type("United Arab Emirates{enter}")
+  cy
+  .wait(500)
+  cy
+  .get('#user_cityId').click().type('Ras al-Khaimah{enter}')
+  cy
+  .wait(500)
+  cy
+  .get('#user_originCountryId').click().type('United Arab Emirates{enter}')
+  cy
+  .get('#user_idNumber').type(number)
+  cy
+  .get('.ant-upload #user_profilePic').selectFile('logo.jpeg',{force:true})
+})
 //
 // -- This is a child command --
 // Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })

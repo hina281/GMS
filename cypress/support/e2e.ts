@@ -26,6 +26,7 @@ declare global {
   namespace Cypress {
     interface Chainable {
       login(email: string, password: string): Chainable<Element>
+      userSignUp(username:string,password:string,password1:string):Chainable<Element>
 //      // drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
 //     //   dismiss(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
 //     //   visit(originalFn: CommandOriginalFn, url: string, options: Partial<VisitOptions>): Chainable<Element>
