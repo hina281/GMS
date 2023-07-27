@@ -17,7 +17,7 @@
 import cypress from 'cypress'
 import './commands'
 import { faker } from '@faker-js/faker'
-
+import "cypress-real-events/support"
 // Alternatively you can use CommonJS syntax:
  require('./commands')
  //Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
@@ -27,6 +27,7 @@ declare global {
     interface Chainable {
       login(email: string, password: string): Chainable<Element>
       userSignUp(username:string,password:string,password1:string):Chainable<Element>
+      userContactDetails():Chainable<Element>
 //      // drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
 //     //   dismiss(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
 //     //   visit(originalFn: CommandOriginalFn, url: string, options: Partial<VisitOptions>): Chainable<Element>
