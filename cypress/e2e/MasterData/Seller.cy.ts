@@ -126,11 +126,16 @@ describe('Agency test Cases',()=>{
         .type('United Arab Emirates{enter}')
         cy
         .get('#user_idNumber')
-        .type(number)
+        .type(zcode)
         cy
         .get('.ant-upload #user_profilePic').selectFile('logo.jpeg',{force:true})
         cy
-        .get('.ant-row .ant-space-item [type="submit"]').last()
+        .get('.ant-row .ant-space-item [type="submit"]').as('addButton')
+        cy
+        .wait(1000)
+        cy
+        .get('@addButton')
+        .first()
         .click()
     })
 })
